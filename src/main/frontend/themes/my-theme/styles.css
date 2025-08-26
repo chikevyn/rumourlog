@@ -1,0 +1,345 @@
+.blue-submit {
+  background-color: #1976d2;
+  color: white;
+  font-weight: bold;
+  border-radius: 6px;
+  padding: 10px 24px;
+  border: none;
+  box-shadow: 0 2px 4px rgba(25, 118, 210, 0.2);
+  transition: background 0.2s;
+}
+.blue-submit:hover {
+  background-color: #1565c0;
+}
+/* Show pointer cursor for all buttons and anchor tags */
+vaadin-button, button, [role="button"], a, .blue-submit {
+  cursor: pointer !important;
+}
+/* Pointer cursor for all clickable elements, including accordion headers */
+vaadin-button, button, [role="button"], a, .blue-submit,
+vaadin-accordion-panel::part(summary) {
+  cursor: pointer !important;
+}
+
+/* Accordion container */
+vaadin-accordion {
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  margin-bottom: 1rem;
+}
+
+/* Accordion panel (each item) */
+vaadin-accordion-panel {
+  border-bottom: 1px solid #dee2e6;
+  background: #fff;
+}
+
+/* Remove border from last panel */
+vaadin-accordion-panel:last-child {
+  border-bottom: none;
+}
+
+/* Accordion header (summary) */
+vaadin-accordion-panel::part(summary) {
+  background: #f8f9fa;
+  color: #212529;
+  font-weight: 500;
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  border-radius: 0.25rem 0.25rem 0 0;
+  transition: background 0.2s;
+  border: none;
+  outline: none;
+}
+
+/* Accordion header hover/focus */
+vaadin-accordion-panel::part(summary):hover,
+vaadin-accordion-panel::part(summary):focus {
+  background: #e2e6ea;
+}
+
+/* Accordion content */
+vaadin-accordion-panel::part(content) {
+  padding: 1rem 1.25rem;
+  background: #fff;
+  color: #212529;
+  border-radius: 0 0 0.25rem 0.25rem;
+  border-top: 1px solid #dee2e6;
+  transition: background 0.2s;
+}
+
+/* Optional: Add a little spacing between panels */
+vaadin-accordion-panel {
+  margin-bottom: 0;
+}
+/* Active (opened) accordion header */
+vaadin-accordion-panel[opened]::part(summary) {
+  background: #cfe2ff !important;
+  color: #084298 !important;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(13,110,253,0.08);
+}
+
+/* Style the main input part of Vaadin TextField */
+vaadin-text-field::part(input-field) {
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  background-color: #fff;
+  box-shadow: none;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  color: #495057;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+/* Style the input itself */
+vaadin-text-field::part(input) {
+  color: #495057;
+  background-color: transparent;
+  font-size: 1rem;
+}
+
+/* Focus state */
+vaadin-text-field:focus-within::part(input-field) {
+  border-color: #86b7fe;
+  box-shadow: 0 0 0 0.2rem rgba(13,110,253,.25);
+}
+
+/* Disabled state */
+vaadin-text-field[disabled]::part(input-field) {
+  background-color: #e9ecef;
+  opacity: 1;
+}
+
+/* Optional: Remove the underline if present */
+vaadin-text-field::part(label) {
+  color: #495057;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+/* Target only accordions with the custom class */
+.bootstrap-accordion {
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  margin-bottom: 1rem;
+}
+
+/* Style the panels inside your custom accordion */
+.bootstrap-accordion vaadin-accordion-panel {
+  border-bottom: 1px solid #dee2e6;
+  background: #fff;
+}
+
+/* Remove border from last panel */
+.bootstrap-accordion vaadin-accordion-panel:last-child {
+  border-bottom: none;
+}
+
+/* Style the summary (header) part */
+.bootstrap-accordion vaadin-accordion-panel::part(summary) {
+  background: #f8f9fa;
+  color: #212529;
+  font-weight: 500;
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  border-radius: 0.25rem 0.25rem 0 0;
+  transition: background 0.2s;
+  border: none;
+  outline: none;
+}
+
+/* Active (opened) panel header */
+.bootstrap-accordion vaadin-accordion-panel[opened]::part(summary) {
+  background: #cfe2ff;
+  color: #084298;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(13,110,253,0.08);
+}
+
+/* Hover/focus effect */
+.bootstrap-accordion vaadin-accordion-panel::part(summary):hover,
+.bootstrap-accordion vaadin-accordion-panel::part(summary):focus {
+  background: #e2e6ea;
+}
+
+/* Panel content */
+.bootstrap-accordion vaadin-accordion-panel::part(content) {
+  padding: 1rem 1.25rem;
+  background: #fff;
+  color: #212529;
+  border-radius: 0 0 0.25rem 0.25rem;
+  border-top: 1px solid #dee2e6;
+  transition: background 0.2s;
+}
+
+/* ComboBox and DatePicker input field styling */
+.bootstrap-accordion vaadin-combo-box::part(input-field),
+.bootstrap-accordion vaadin-date-picker::part(input-field) {
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  background-color: #fff;
+  box-shadow: none;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  color: #495057;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+/* ComboBox and DatePicker input text */
+.bootstrap-accordion vaadin-combo-box::part(input),
+.bootstrap-accordion vaadin-date-picker::part(input) {
+  color: #495057;
+  background-color: transparent;
+  font-size: 1rem;
+}
+
+/* Focus state */
+.bootstrap-accordion vaadin-combo-box:focus-within::part(input-field),
+.bootstrap-accordion vaadin-date-picker:focus-within::part(input-field) {
+  border-color: #86b7fe;
+  box-shadow: 0 0 0 0.2rem rgba(13,110,253,.25);
+}
+
+/* Disabled state */
+.bootstrap-accordion vaadin-combo-box[disabled]::part(input-field),
+.bootstrap-accordion vaadin-date-picker[disabled]::part(input-field) {
+  background-color: #e9ecef;
+  opacity: 1;
+}
+
+/* Label styling */
+.bootstrap-accordion vaadin-combo-box::part(label),
+.bootstrap-accordion vaadin-date-picker::part(label) {
+  color: #495057;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+/* Remove underline if present */
+.bootstrap-accordion vaadin-combo-box::part(helper-text),
+.bootstrap-accordion vaadin-date-picker::part(helper-text) {
+  border: none;
+}
+
+/* Optional: Style the dropdown overlay for ComboBox */
+vaadin-combo-box-overlay::part(content) {
+  border-radius: 0.25rem;
+  border: 1px solid #ced4da;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  background: #fff;
+}
+/* Bootstrap-like style for ComboBox with the custom class */
+.bootstrap-input::part(input-field) {
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  background-color: #fff;
+  box-shadow: none;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  color: #495057;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.bootstrap-input::part(input) {
+  color: #495057;
+  background-color: transparent;
+  font-size: 1rem;
+}
+
+.bootstrap-input:focus-within::part(input-field) {
+  border-color: #86b7fe;
+  box-shadow: 0 0 0 0.2rem rgba(13,110,253,.25);
+}
+
+.bootstrap-input[disabled]::part(input-field) {
+  background-color: #e9ecef;
+  opacity: 1;
+}
+
+.bootstrap-input::part(label) {
+  color: #495057;
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+/* Make the main container responsive */
+.bootstrap-accordion,
+.bootstrap-input {
+  width: 100%;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+/* Responsive padding for smaller screens */
+@media (max-width: 600px) {
+  .bootstrap-accordion,
+  .bootstrap-input {
+    padding-left: 8px;
+    padding-right: 8px;
+    max-width: 100%;
+  }
+}
+
+/* Make the submit button responsive and centered */
+.blue-submit {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 200px;
+  padding: 25px;
+}
+/* Style Vaadin Accordion headers */
+.bootstrap-accordion::part(summary) {
+  background-color: #f0f0f0 !important;   /* light gray */
+  color: #1976d2  !important;           /* blue (Material Blue 700) */
+  font-weight: 600 !important;
+}
+
+/* Optional: Change header color on hover/focus */
+.bootstrap-accordion::part(summary):hover,
+.bootstrap-accordion::part(summary):focus {
+  background-color: #e0e0e0 !important;
+  color: #1565c0 !important;
+  cursor: pointer !important;
+}
+
+/* Gray background for the header, blue text for the label */
+vaadin-accordion-panel::part(summary) {
+  background-color: #f0f0f0;
+}
+
+vaadin-accordion-panel::part(label) {
+  color: #1976d2;
+  font-weight: 600;
+}
+summary-vaadin-accordion-panel-12{
+    
+    background-color: #e0e0e0 !important;
+    color: #1565c0 !important;
+    cursor: pointer !important;
+    font-weight: 600;
+    padding: 10px;
+}
+
+.page-title {
+  text-align: left;
+  color: #1976d2;
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  
+  background: linear-gradient(90deg, #e3f2fd47 0%, #bbe6fb24 100%);
+  border-radius: 12px;
+  padding: 24px 20px;
+  box-shadow: 0 2px 2px 0 rgba(25, 118, 210, 0.08);
+}
