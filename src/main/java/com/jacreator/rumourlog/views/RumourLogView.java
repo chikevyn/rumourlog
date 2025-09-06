@@ -22,15 +22,31 @@ import com.vaadin.flow.router.Route;
 @Route("")
 public class RumourLogView extends VerticalLayout {
   private final List<String> Lgas = Arrays.asList("AMAC", "Bwari", "Kwali", "Nsukka", "Enugu south", "Udi");
-  private final List<String> sourceList = Arrays.asList("Observed", "Print and Media", "Facebook", "Twitter",
-      "WhatsApp", "Other");
+
+  // Updated as per instructions
+  private final List<String> signalList = Arrays.asList(
+      "Any child under 15 years with sudden weakness of the limbs",
+      "A cluster of persons with fever and respiratory symptoms (cough, running nose, nasal congestion, difficulty breathing etc.) in the same community within a week",
+      "Any person with skin sores or other unusual symptoms, after contact with sick or dead animals",
+      "Any person presenting with increased number of frequent watery stool (three or more times a day) and severe fatigue (Person is unable to go to school, work or requiring hospitalisation)",
+      "Three or more children with a fever and rash in the same community within a week or children absent from a school due to the same illness in the same week",
+      "Any illness or sudden death with signs/symptoms the community has not seen before",
+      "Any person with fever and unexplained bleeding from body parts or unexplained death with bleeding",
+      "Increase/cluster of deaths among animals/birds in a localised area (e.g., farm, park, game reserve...etc) with similar signs and symptoms",
+      "Frequent abortion among animals (goat, sheep, cattle) with or without decrease in milk production",
+      "Abnormal behaviour/aggression among one or more dogs in the community",
+      "Unusual change in the sources of drinking water (e.g., colour, taste, odour, suspended solids)");
+
+  // Updated as per instructions
+  private final List<String> typeOfSignalList = Arrays.asList("Human", "Animal", "Environment");
+
   private final List<String> diseaseEventList = Arrays.asList("Increasing", "Decreasing", "Static");
 
   private Map<String, List<String>> wardData = new HashMap<String, List<String>>() {
     {
       put("AMAC", Arrays.asList("City Centre", "Garki", "Kabusa", "Wuse", "Gwarinpa"));
       put("Bwari", Arrays.asList("Bwari Central", "Kuduru", "Igu", "Shere", "Kawu", "Ushafa"));
-      put("KUJE", Arrays.asList("Kuje", "Chibiri", "Gaube", "Kwaku"));
+      put("Kuje", Arrays.asList("Kuje", "Chibiri", "Gaube", "Kwaku")); // Fixed casing
       put("Nsukka", Arrays.asList("IBEKU", "ALOR-UNO", "EDE-UKWU", "EDE-NTA", "EDEM-ANI"));
       put("Enugu south", Arrays.asList("Akwuke", "Amechi I", "Achara Layout East", "Achara Layout West"));
       put("Udi", Arrays.asList("Oghu", "Affa", "Okpatu", "Awhum", "Ukana", "Abor"));
@@ -47,7 +63,6 @@ public class RumourLogView extends VerticalLayout {
     // Submit button
     Button submit = new Button("Submit form", event -> {
       Notification.show("Form submitted!");
-      // Here, collect and process form data as needed
     });
 
     setWidthFull();
@@ -96,14 +111,18 @@ public class RumourLogView extends VerticalLayout {
     dateResultAvailable.setMax(LocalDate.now());
     dateResultAvailable.setRequired(true);
 
-    // Illness Type
-    TextField illnessType = new TextField("Type of Illness");
+    // Changed "Type of Illness" to "Signal" (dropdown)
+    ComboBox<String> illnessType = new ComboBox<>("Signal");
+    illnessType.setItems(signalList);
+    illnessType.setRequired(true);
 
-    ComboBox<String> sourceOfInformation = new ComboBox<>("Source of Information");
-    sourceOfInformation.setItems(sourceList);
+    // Changed "Source of Information" to "Types of Signal" (dropdown)
+    ComboBox<String> sourceOfInformation = new ComboBox<>("Types of Signal");
+    sourceOfInformation.setItems(typeOfSignalList);
     sourceOfInformation.setRequired(true);
 
-    // Other source of information, please specify
+    // Other source of information removed because no longer needed
+    // (kept but hidden permanently for code stability)
     TextField otherSourceOfInformation = new TextField("Other source of information, please specify");
     otherSourceOfInformation.setVisible(false);
 
@@ -140,14 +159,15 @@ public class RumourLogView extends VerticalLayout {
 
     TextField actionTaken = new TextField("What action has been taken");
 
+    // Changed label as per instruction
     RadioButtonGroup<String> healthFacilityCheck = new RadioButtonGroup<>();
-    healthFacilityCheck.setLabel("Has this been verified by a health facility?");
+    healthFacilityCheck.setLabel("Has this been verified by a DSNO?");
     healthFacilityCheck.setItems("Yes", "No");
 
     // Dynamic logic: Update LGA options based on state
     stateOfResidence.addValueChangeListener(e -> {
       if ("FCT".equals(e.getValue())) {
-        lgaOfResidence.setItems("AMAC", "Bwari", "Kwali");
+        lgaOfResidence.setItems("AMAC", "Bwari", "Kwali", "Kuje");
       } else if ("Enugu".equals(e.getValue())) {
         lgaOfResidence.setItems("Nsukka", "Enugu south", "Udi");
       } else {
@@ -169,7 +189,6 @@ public class RumourLogView extends VerticalLayout {
       String ward = e.getValue();
       if (ward != null && !ward.isEmpty()) {
         communityComboBox.setVisible(true);
-        // Optionally, you can set a default value or clear the field
         communityComboBox.clear();
       } else {
         communityComboBox.setVisible(false);
@@ -177,15 +196,7 @@ public class RumourLogView extends VerticalLayout {
       }
     });
 
-    sourceOfInformation.addValueChangeListener(e -> {
-      String source = e.getValue();
-      if ("Other".equals(source)) {
-        otherSourceOfInformation.setVisible(true);
-      } else {
-        otherSourceOfInformation.setVisible(false);
-      }
-    });
-
+    // Show death details only if "Yes"
     deathResult.addValueChangeListener(e -> {
       if ("Yes".equals(e.getValue())) {
         deathDetails.setVisible(true);
@@ -207,7 +218,7 @@ public class RumourLogView extends VerticalLayout {
         new FormLayout.ResponsiveStep("600px", 2),
         new FormLayout.ResponsiveStep("700px", 3));
 
-    form.add(communityInformant, telephoneNumber, 
+    form.add(communityInformant, telephoneNumber,
         stateOfResidence, lgaOfResidence,
         wardOfResidence, communityComboBox,
         dateResultAvailable, illnessType,
